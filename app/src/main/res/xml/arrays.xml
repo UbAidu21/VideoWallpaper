@@ -1,0 +1,13 @@
+<resources>
+    <string-array name="wallpaper_target_entries">
+        <item>Home Screen</item>
+        <item>Lock Screen</item>
+        <item>Both Screens</item>
+    </string-array>
+
+    <string-array name="wallpaper_target_values">
+        <item>home</item>
+        <item>lock</item>
+        <item>both</item>
+    </string-array>
+</resources>

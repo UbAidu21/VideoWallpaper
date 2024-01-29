@@ -1,0 +1,16 @@
+<!-- res/xml/preferences.xml -->
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="apply_to_home_screen"
+        app:title="Apply to Home Screen"
+        app:summary="Enable to apply wallpaper to the home screen"
+        app:defaultValue="true" />
+
+    <SwitchPreferenceCompat
+        app:key="apply_to_lock_screen"
+        app:title="Apply to Lock Screen"
+        app:summary="Enable to apply wallpaper to the lock screen"
+        app:defaultValue="true" />
+
+</PreferenceScreen>
