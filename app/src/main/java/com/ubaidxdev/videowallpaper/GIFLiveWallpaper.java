@@ -2,10 +2,15 @@ package com.ubaidxdev.videowallpaper;
 
 import android.app.WallpaperManager;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Movie;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+
+import com.ubaidxdev.videowallpaper.Utils.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,9 +30,14 @@ public class GIFLiveWallpaper extends WallpaperService {
         private float scaleRatio;
         private float y;
         private float x;
+        private Paint paint;
 
         public GIFWallpaperEngine() {
+            paint = new Paint();
+            paint.setColor(Color.RED);
+            paint.setStyle(Paint.Style.FILL);
             handler = new Handler();
+
         }
 
         @Override
@@ -48,7 +58,7 @@ public class GIFLiveWallpaper extends WallpaperService {
 
             // Load your GIF here
             try {
-                InputStream inputStream = getResources().openRawResource(R.raw.car);
+                InputStream inputStream = getResources().openRawResource(Util.gif);
                 byte[] bytes = new byte[inputStream.available()];
                 inputStream.read(bytes);
                 movie = Movie.decodeByteArray(bytes, 0, bytes.length);
@@ -81,6 +91,20 @@ public class GIFLiveWallpaper extends WallpaperService {
         }
 
         private final Runnable drawGIF = this::draw;
+        @Override
+        public void onTouchEvent(MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // Handle touch down event (e.g., change color)
+                    paint.setColor(Color.GREEN);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    // Handle touch up event (e.g., revert to the original color)
+                    paint.setColor(Color.BLUE);
+                    break;
+                // Handle other touch events if needed
+            }
+        }
 
         private void draw() {
             if (visible) {
